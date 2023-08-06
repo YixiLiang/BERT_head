@@ -1,0 +1,22 @@
+第一步data preprocessing
+如果是本地就创建新的数据集，***记得可以取小一点的数量debug
+然后把数据分为text和label
+
+
+有三种：分类方式
+Binary，Multiclass，Multilabel
+
+Binary，Multiclass都是用CrossEntry来计算loss，出来的logits是[ batch * num_label]
+tensor([[0.0000, 0.0000],
+        [0.0000, 3.7665],
+        [0.0000, 4.5705],
+        [0.0000, 4.4177]],
+值最大的为预测值
+
+Multilabel是用BCElogist计算loss，出来的logists是[batch * num_labels]
+因为经过Sigmoid, 大于0.5的为1，小于的为0
+
+BERT output.keys()
+odict_keys(['last_hidden_state', 'pooler_output', 'hidden_states', 'attentions'])
+outputs['last_hidden_state'] = [batch, ? , 768]
+outputs['hidden_states'] = [13, batch, ? , 768]
